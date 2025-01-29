@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "minecraft:chest"
+    }
+  ],
+  "result": {
+    "item": "randomthings:mini_chest",
+    "count": 9
+  }
+}

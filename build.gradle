@@ -191,6 +191,7 @@ dependencies {
     runtimeOnly(fg.deobf("mezz.jei:jei-${minecraft_version}-forge:${jei_version}"))
     runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}")
     runtimeOnly fg.deobf("curse.maven:jade-324717:5672013")
+    runtimeOnly fg.deobf("curse.maven:pipez-443900:5550816")
     runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}"))
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime

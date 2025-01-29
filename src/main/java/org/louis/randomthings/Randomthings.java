@@ -1,5 +1,6 @@
 package org.louis.randomthings;
 
+import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
@@ -10,8 +11,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
+import org.louis.randomthings.core.screen.BlockMiniChestScreen;
 import org.louis.randomthings.registry.ModBlocks;
+import org.louis.randomthings.registry.ModBlockEntities;
 import org.louis.randomthings.registry.ModItems;
+import org.louis.randomthings.registry.ModMenuTypes;
 
 @Mod(Randomthings.MODID)
 public class Randomthings {
@@ -23,6 +27,8 @@ public class Randomthings {
         modEventBus.addListener(this::commonSetup);
 
         ModBlocks.register(modEventBus);
+        ModBlockEntities.register(modEventBus);
+        ModMenuTypes.register(modEventBus);
         ModItems.register(modEventBus);
         RDTab.register(modEventBus);
 
@@ -50,7 +56,7 @@ public class Randomthings {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-
+            MenuScreens.register(ModMenuTypes.MINI_CHEST_MENU.get(), BlockMiniChestScreen::new);
         }
     }
 }
