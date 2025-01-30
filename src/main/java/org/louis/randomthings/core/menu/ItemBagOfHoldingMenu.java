@@ -1,5 +1,6 @@
 package org.louis.randomthings.core.menu;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -12,6 +13,8 @@ import org.jetbrains.annotations.NotNull;
 import org.louis.randomthings.core.item.ItemBagOfHolding;
 import org.louis.randomthings.registry.ModMenuTypes;
 
+import java.util.logging.Logger;
+
 public class ItemBagOfHoldingMenu extends AbstractContainerMenu {
     private final ItemStackHandler inventoryHandler;
 
@@ -20,7 +23,7 @@ public class ItemBagOfHoldingMenu extends AbstractContainerMenu {
         this(pContainerId, pPlayerInventory, pBuf.readItem());
     }
 
-    // Server Constructor
+    /// Server Constructor
     public ItemBagOfHoldingMenu(int pContainerId, Inventory pPlayerInventory, ItemStack backpackItem) {
         super(ModMenuTypes.BAG_OF_HOLDING_MENU.get(), pContainerId);
         this.inventoryHandler = new ItemStackHandler(54); // 54 slot giống Double Chest
@@ -29,25 +32,40 @@ public class ItemBagOfHoldingMenu extends AbstractContainerMenu {
         this.inventoryHandler.deserializeNBT(backpackItem.getOrCreateTag().getCompound("Inventory"));
 
         // Tạo các slot cho backpack (54 slot, giống Double Chest)
-        for (int row = 0; row < 6; row++) { // 6 hàng cho backpack
-            for (int column = 0; column < 9; column++) { // 9 cột cho mỗi hàng
-                this.addSlot(new SlotItemHandler(inventoryHandler, column + row * 9, 8 + column * 18, 18 + row * 18));
-            }
-        }
+        createBackpackSlots();
 
-        // Điều chỉnh vị trí của inventory và hotbar để tránh chồng lấn
+        // Điều chỉnh vị trí của inventory và hotbar
         createPlayerInventory(pPlayerInventory);
         createPlayerHotbar(pPlayerInventory);
+    }
+
+    private void createBackpackSlots() {
+        for (int row = 0; row < 6; row++) { // 6 hàng cho backpack
+            for (int column = 0; column < 9; column++) { // 9 cột cho mỗi hàng
+                addSlot(new SlotItemHandler(inventoryHandler, column + row * 9, 8 + column * 18, 18 + row * 18) {
+                    @Override
+                    public boolean mayPlace(ItemStack pStack) {
+                        return !(pStack.getItem() instanceof ItemBagOfHolding) && super.mayPlace(pStack); // Cấm đặt BagOfHolding vào các slot
+                    }
+                });
+            }
+        }
     }
 
     private void createPlayerInventory(Inventory playerInv) {
         int inventoryStartY = 140; // Dời xuống dưới backpack
         for (int row = 0; row < 3; row++) {
             for (int column = 0; column < 9; column++) {
-                addSlot(new Slot(playerInv,
-                        9 + column + (row * 9),
-                        8 + (column * 18),
-                        inventoryStartY + (row * 18))); // Điều chỉnh Y
+                addSlot(new Slot(playerInv, 9 + column + (row * 9), 8 + (column * 18), inventoryStartY + (row * 18)) {
+                    @Override
+                    public boolean mayPlace(ItemStack pStack) {
+                        ItemStack heldItem = playerInv.player.getMainHandItem();
+                        if (pStack == heldItem && pStack.getItem() instanceof ItemBagOfHolding) {
+                            return false;
+                        }
+                        return super.mayPlace(pStack);
+                    }
+                });
             }
         }
     }
@@ -61,62 +79,89 @@ public class ItemBagOfHoldingMenu extends AbstractContainerMenu {
                     hotbarStartY) {
                 @Override
                 public boolean mayPickup(Player pPlayer) {
-                    // Nếu item trong hotbar là BagOfHolding, không cho phép lấy ra
+                    // Không cho phép lấy BagOfHolding đang cầm khỏi hotbar
                     ItemStack stackInSlot = this.getItem();
-                    if (stackInSlot.getItem() instanceof ItemBagOfHolding) {
-                        return false; // Không cho phép lấy ra
+                    ItemStack heldItem = pPlayer.getMainHandItem();
+                    if (stackInSlot == heldItem && stackInSlot.getItem() instanceof ItemBagOfHolding) {
+                        return false;
                     }
-                    return super.mayPickup(pPlayer); // Cho phép như bình thường với các item khác
+                    return super.mayPickup(pPlayer);
                 }
 
                 @Override
                 public boolean mayPlace(ItemStack pStack) {
-                    // Không cho phép đặt BagOfHolding vào slot hotbar
-                    if (pStack.getItem() instanceof ItemBagOfHolding) {
-                        return false; // Không cho phép đặt vào hotbar
+                    // Không cho phép đặt lại BagOfHolding đang cầm vào hotbar
+                    ItemStack heldItem = playerInv.player.getMainHandItem();
+                    if (pStack == heldItem && pStack.getItem() instanceof ItemBagOfHolding) {
+                        return false;
                     }
-                    return super.mayPlace(pStack); // Cho phép đặt các item khác vào
+                    return super.mayPlace(pStack);
                 }
             });
         }
     }
 
+
+
     @Override
     public @NotNull ItemStack quickMoveStack(@NotNull Player pPlayer, int pIndex) {
         Slot fromSlot = getSlot(pIndex);
         ItemStack fromStack = fromSlot.getItem();
+        ItemStack heldItem = pPlayer.getMainHandItem();
+        CompoundTag heldItemTag = heldItem.getTag();
 
-        // Nếu slot rỗng, không làm gì cả
+        // Nếu slot rỗng hoặc là BagOfHolding mà đang cầm trên tay, không làm gì cả
         if (fromStack.isEmpty()) {
             return ItemStack.EMPTY;
         }
 
-        ItemStack copyFromStack = fromStack.copy();
-
-        // Kiểm tra nếu item là BagOfHolding, ngừng di chuyển nó
-        if (fromStack.getItem() instanceof ItemBagOfHolding) {
-            return ItemStack.EMPTY; // Không cho phép di chuyển BagOfHolding
+        if (heldItemTag != null && heldItemTag.contains("type") && "BagOfHolding".equals(heldItemTag.getString("type"))) {
+            return ItemStack.EMPTY;
         }
 
-        if (pIndex < 36) { // Nếu đang trong kho của người chơi
-            // Di chuyển item vào slot backpack (slot 36-89)
-            if (!moveItemStackTo(fromStack, 36, 90, false)) {
-                return ItemStack.EMPTY;
+
+        ItemStack copyFromStack = fromStack.copy();
+
+        // Di chuyển item giữa backpack, inventory và hotbar
+        if (pIndex < 54) {
+            // Nếu không thể di chuyển vào 81-90, thử di chuyển vào 54-81
+            if (!moveItemStackTo(fromStack, 80, 89, false)) {
+                if (!moveItemStackTo(fromStack, 54, 79, false)) {
+                    return ItemStack.EMPTY;
+                }
             }
-        } else if (pIndex < 90) { // Nếu đang trong slot backpack (slot 36-89)
-            // Di chuyển item vào kho người chơi
-            if (!moveItemStackTo(fromStack, 0, 36, false)) {
-                return ItemStack.EMPTY;
+        } else if (pIndex < 90) {
+            // Nếu không thể di chuyển vào 0-54, thử di chuyển vào 54-81
+            if (!moveItemStackTo(fromStack, 0, 53, false)) {
+                if (!moveItemStackTo(fromStack, 54, 80, false)) {
+                    return ItemStack.EMPTY;
+                }
             }
         } else {
             return ItemStack.EMPTY; // Không có slot hợp lệ nào
         }
 
-        // Cập nhật slot và thông báo rằng item đã được lấy
+
+        // Lưu các thay đổi vào NBT sau khi di chuyển item vào backpack
+        saveInventoryToNBT(pPlayer);
+
         fromSlot.setChanged();
         fromSlot.onTake(pPlayer, fromStack);
 
         return copyFromStack;
+    }
+
+    // Phương thức lưu lại inventory vào NBT
+    private void saveInventoryToNBT(Player pPlayer) {
+        ItemStack backpackItem = getCurrentPlayerBackpack(pPlayer);
+        if (!backpackItem.isEmpty()) {
+            backpackItem.getOrCreateTag().put("Inventory", this.inventoryHandler.serializeNBT());
+        }
+    }
+
+    // Lấy item hiện tại trong tay của người chơi (backpack)
+    private ItemStack getCurrentPlayerBackpack(Player pPlayer) {
+        return pPlayer.getMainHandItem(); // Hoặc lấy từ nơi khác nếu cần
     }
 
     @Override
@@ -124,7 +169,7 @@ public class ItemBagOfHoldingMenu extends AbstractContainerMenu {
         super.removed(player);
 
         // Lưu lại các item trong backpack vào NBT khi người chơi đóng menu
-        ItemStack backpackItem = player.getMainHandItem();
+        ItemStack backpackItem = getCurrentPlayerBackpack(player);
         if (!backpackItem.isEmpty()) {
             // Ghi lại inventory vào NBT
             backpackItem.getOrCreateTag().put("Inventory", this.inventoryHandler.serializeNBT());

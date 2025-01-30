@@ -14,7 +14,8 @@ public class ModBlockEntities {
 
     public static final RegistryObject<BlockEntityType<BlockMiniChestEntity>> BLOCK_MINI_CHEST_ENTITY =
             BLOCK_ENTITIES.register("mini_chest_entity",
-            () -> BlockEntityType.Builder.of(BlockMiniChestEntity::new, ModBlocks.BLOCK_MINI_CHEST.get()).build(null));
+                    () -> BlockEntityType.Builder.of(BlockMiniChestEntity::new, ModBlocks.BLOCK_MINI_CHEST.get()).build(null));
+
 
     public static void register(IEventBus eventBus) {
         BLOCK_ENTITIES.register(eventBus);

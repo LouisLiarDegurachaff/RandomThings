@@ -1,0 +1,7 @@
+{
+  "size": 1,
+  "icon": "randomthings:textures/gui/slot_upgrade.png",
+  "localizedName": {
+    "translate": "curios.slot.upgrade"
+  }
+}

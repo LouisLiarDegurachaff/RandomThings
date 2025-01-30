@@ -8,12 +8,17 @@ import net.minecraftforge.registries.RegistryObject;
 import org.louis.randomthings.Randomthings;
 import org.louis.randomthings.core.item.ItemAngelBlock;
 import org.louis.randomthings.core.item.ItemBagOfHolding;
+import org.louis.randomthings.core.item.ItemDivisionSigil;
+import org.louis.randomthings.core.item.ItemUnstableIngot;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, Randomthings.MODID);
 
     public static final RegistryObject<Item> BAG_OF_HOLDING = ITEMS.register("bag_of_holding", ItemBagOfHolding::new);
+
+    public static final RegistryObject<Item> DIVISION_SIGIL = ITEMS.register("division_sigil", ItemDivisionSigil::new);
+    public static final RegistryObject<Item> UNSTABLE_INGOT = ITEMS.register("unstable_ingot", ItemUnstableIngot::new);
 
     public static final RegistryObject<Item> ITEM_ANGEL_BLOCK = ITEMS.register("angel_block", ItemAngelBlock::new);
 

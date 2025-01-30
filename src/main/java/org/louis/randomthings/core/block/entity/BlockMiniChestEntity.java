@@ -43,7 +43,9 @@ public class BlockMiniChestEntity extends BlockEntity implements MenuProvider {
     @Override
     public void load(@NotNull CompoundTag nbt) {
         super.load(nbt);
-        this.inventory.deserializeNBT(nbt.getCompound("Inventory"));
+        if (nbt.contains("Inventory")) {
+            this.inventory.deserializeNBT(nbt.getCompound("Inventory"));
+        }
     }
 
     @Override
@@ -76,7 +78,7 @@ public class BlockMiniChestEntity extends BlockEntity implements MenuProvider {
     }
 
     public void drops() {
-        if (level != null) {
+        if (level != null && !level.isClientSide()) {
             SimpleContainer inventoryContainer = new SimpleContainer(this.inventory.getSlots());
             for (int i = 0; i < this.inventory.getSlots(); i++) {
                 inventoryContainer.setItem(i, this.inventory.getStackInSlot(i));
@@ -92,7 +94,7 @@ public class BlockMiniChestEntity extends BlockEntity implements MenuProvider {
 
     @Nullable
     @Override
-    public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pPlayerInventory, Player pPlayer) {
+    public AbstractContainerMenu createMenu(int pContainerId, @NotNull Inventory pPlayerInventory, @NotNull Player pPlayer) {
         return new BlockMiniChestMenu(pContainerId, pPlayerInventory, this);
     }
 }

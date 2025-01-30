@@ -192,7 +192,10 @@ dependencies {
     runtimeOnly fg.deobf("dev.emi:emi-forge:${emi_version}")
     runtimeOnly fg.deobf("curse.maven:jade-324717:5672013")
     runtimeOnly fg.deobf("curse.maven:pipez-443900:5550816")
-    runtimeOnly(fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}"))
+    runtimeOnly fg.deobf("curse.maven:emi-loot-681783:5760210")
+    runtimeOnly fg.deobf("curse.maven:fzzy-config-1005914:6097787")
+    runtimeOnly fg.deobf("curse.maven:kotlin-for-forge-351264:5402061")
+    runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     // Example mod dependency with JEI - using fg.deobf() ensures the dependency is remapped to your development mappings
     // The JEI API is declared for compile time use, while the full JEI artifact is used at runtime
     // compileOnly fg.deobf("mezz.jei:jei-${mc_version}-common-api:${jei_version}")

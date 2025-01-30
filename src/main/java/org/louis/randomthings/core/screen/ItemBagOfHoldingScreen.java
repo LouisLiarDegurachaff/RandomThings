@@ -5,7 +5,6 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import org.louis.randomthings.Randomthings;
 import org.louis.randomthings.core.menu.ItemBagOfHoldingMenu;
 
 public class ItemBagOfHoldingScreen extends AbstractContainerScreen<ItemBagOfHoldingMenu> {

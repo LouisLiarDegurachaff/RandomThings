@@ -3,6 +3,9 @@
   "block.randomthings.mini_chest": "Mini Chest",
 
   "item.randomthings.bag_of_holding": "Bag Of Holding",
+  "item.randomthings.division_sigil": "Division Sigil",
+  "item.randomthings.unstable_ingot": "Unstable Ingot",
 
-  "creativetab.random_things_tab": "Random Things"
+  "creativetab.random_things_tab": "Random Things",
+  "tooltip.randomthings.unstable_ingot.tooltip": "If it's Unstable Ingot you have 10 second in INVENTORY before it explosion"
 }

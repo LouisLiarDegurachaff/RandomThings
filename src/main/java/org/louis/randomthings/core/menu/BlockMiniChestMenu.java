@@ -86,7 +86,7 @@ public class BlockMiniChestMenu extends AbstractContainerMenu {
             }
         } else if (pIndex < 37) {
             // Nếu chúng ta đang ở trong slot mini chest (slot 36), di chuyển item vào kho người chơi
-            if (!moveItemStackTo(fromStack, 0, 36, false)) {
+            if (!moveItemStackTo(fromStack, 0, 35, false)) {
                 return ItemStack.EMPTY;
             }
         } else {

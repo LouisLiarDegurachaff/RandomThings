@@ -3,22 +3,21 @@ package org.louis.randomthings.core.item;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
-import org.jetbrains.annotations.Nullable;
 import org.louis.randomthings.Randomthings;
 import org.louis.randomthings.core.menu.ItemBagOfHoldingMenu;
-import org.louis.randomthings.registry.ModMenuTypes;
+
+import java.util.List;
 
 public class ItemBagOfHolding extends Item {
     public ItemBagOfHolding() {
@@ -50,4 +49,37 @@ public class ItemBagOfHolding extends Item {
         }
         return super.use(pLevel, pPlayer, pUsedHand);
     }
+
+    @Override
+    public void appendHoverText(ItemStack stack, Level level, List<Component> tooltip, TooltipFlag flag) {
+        super.appendHoverText(stack, level, tooltip, flag);
+
+        // Kiểm tra nếu Bag of Holding có chứa dữ liệu inventory
+        if (stack.hasTag() && stack.getTag().contains("Inventory")) {
+            ItemStackHandler inventoryHandler = new ItemStackHandler(54);
+            inventoryHandler.deserializeNBT(stack.getTag().getCompound("Inventory"));;
+
+            // Số lượng tối đa hiển thị trong tooltip
+            final int MAX_DISPLAY = 10;
+
+            // Duyệt qua các slot để hiển thị item
+            int displayedCount = 0;
+            for (int i = 0; i < inventoryHandler.getSlots() && displayedCount < MAX_DISPLAY; i++) {
+                ItemStack itemStack = inventoryHandler.getStackInSlot(i);
+                if (!itemStack.isEmpty()) {
+                    tooltip.add(Component.literal(itemStack.getCount() + " x " + itemStack.getDisplayName().getString()));
+                    displayedCount++;
+                }
+            }
+
+            // Nếu có nhiều hơn MAX_DISPLAY item, hiển thị thông báo rằng còn nhiều hơn
+            if (displayedCount >= MAX_DISPLAY) {
+                tooltip.add(Component.literal("...and more"));
+            }
+
+        } else {
+            tooltip.add(Component.literal(""));
+        }
+    }
+
 }
