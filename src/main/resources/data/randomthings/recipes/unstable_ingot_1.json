@@ -10,7 +10,7 @@
       "item": "minecraft:diamond"
     },
     "/": {
-      "item": "randomthings:division_sigil"
+      "item": "randomthings:activated_division_sigil"
     },
     "i": {
       "item": "minecraft:iron_ingot"

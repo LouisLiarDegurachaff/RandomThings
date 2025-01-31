@@ -4,32 +4,30 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
-import net.minecraftforge.event.level.BlockEvent;
-import net.minecraftforge.eventbus.api.EventPriority;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import org.louis.randomthings.base.BaseItem;
+import org.louis.randomthings.lib.Tooltips;
 
 import java.util.List;
 
-public class ItemUnstableIngot extends Item {
+public class ItemUnstableIngot extends BaseItem {
 
     private static final int EXPLOSION_TIME = 200;  // Thời gian nổ (200 tick = 10 giây)
 
     public ItemUnstableIngot() {
-        super(new Item.Properties());
+        super(properties -> properties);
         // Đăng ký sự kiện
         IEventBus bus = MinecraftForge.EVENT_BUS;
         bus.register(this);
@@ -147,7 +145,7 @@ public class ItemUnstableIngot extends Item {
     public void appendHoverText(ItemStack stack, Level world, List<Component> tooltip, TooltipFlag flag) {
         super.appendHoverText(stack, world, tooltip, flag);
 
-        tooltip.add(Component.translatable("tooltip.randomthings.unstable_ingot.tooltip"));
+        tooltip.add(Tooltips.UNSTABLE_INGOT.getTextComponent());
         // Kiểm tra nếu item là Unstable và có NBT "ExplosionTime"
         if (stack.hasTag() && stack.getTag().contains("ExplosionTime")) {
             int timeLeft = stack.getTag().getInt("ExplosionTime");

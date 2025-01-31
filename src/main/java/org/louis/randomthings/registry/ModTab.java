@@ -1,4 +1,4 @@
-package org.louis.randomthings;
+package org.louis.randomthings.registry;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
@@ -7,10 +7,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.RegistryObject;
-import org.louis.randomthings.registry.ModBlocks;
-import org.louis.randomthings.registry.ModItems;
+import org.louis.randomthings.Randomthings;
 
-public class RDTab {
+public class ModTab {
 
     public static final DeferredRegister<CreativeModeTab> CREATIVE_MODE_TABS =
             DeferredRegister.create(Registries.CREATIVE_MODE_TAB, Randomthings.MODID);

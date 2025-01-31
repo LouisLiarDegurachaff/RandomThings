@@ -11,9 +11,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.louis.randomthings.core.item.ItemBagOfHolding;
-import org.louis.randomthings.registry.ModMenuTypes;
-
-import java.util.logging.Logger;
+import org.louis.randomthings.registry.ModMenu;
 
 public class ItemBagOfHoldingMenu extends AbstractContainerMenu {
     private final ItemStackHandler inventoryHandler;
@@ -25,7 +23,7 @@ public class ItemBagOfHoldingMenu extends AbstractContainerMenu {
 
     /// Server Constructor
     public ItemBagOfHoldingMenu(int pContainerId, Inventory pPlayerInventory, ItemStack backpackItem) {
-        super(ModMenuTypes.BAG_OF_HOLDING_MENU.get(), pContainerId);
+        super(ModMenu.BAG_OF_HOLDING_MENU.get(), pContainerId);
         this.inventoryHandler = new ItemStackHandler(54); // 54 slot giống Double Chest
 
         // Deserialize NBT để lấy item trong backpack

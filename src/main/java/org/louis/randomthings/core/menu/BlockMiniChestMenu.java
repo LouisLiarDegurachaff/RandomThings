@@ -12,7 +12,7 @@ import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
 import org.louis.randomthings.core.block.entity.BlockMiniChestEntity;
 import org.louis.randomthings.registry.ModBlocks;
-import org.louis.randomthings.registry.ModMenuTypes;
+import org.louis.randomthings.registry.ModMenu;
 
 public class BlockMiniChestMenu extends AbstractContainerMenu {
     private final BlockMiniChestEntity blockEntity;
@@ -25,7 +25,7 @@ public class BlockMiniChestMenu extends AbstractContainerMenu {
 
     // Server Constructor
     public BlockMiniChestMenu(int containerId, Inventory playerInv, BlockEntity blockEntity) {
-        super(ModMenuTypes.MINI_CHEST_MENU.get(), containerId);
+        super(ModMenu.MINI_CHEST_MENU.get(), containerId);
         if(blockEntity instanceof BlockMiniChestEntity be) {
             this.blockEntity = be;
         } else {

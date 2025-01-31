@@ -21,20 +21,21 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
+import org.louis.randomthings.base.BaseBlock;
 import org.louis.randomthings.core.block.entity.BlockMiniChestEntity;
 import org.louis.randomthings.registry.ModBlockEntities;
 import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 
 @SuppressWarnings("deprecation")
-public class BlockMiniChest extends Block implements EntityBlock {
+public class BlockMiniChest extends BaseBlock implements EntityBlock {
     // Thuộc tính hướng (FACING) để chest có thể xoay ngang
     public static final DirectionProperty FACING = BlockStateProperties.HORIZONTAL_FACING;
 
     // Hình dạng VoxelShape của block, dựa trên JSON model
     private static final VoxelShape SHAPE = Block.box(5, 0, 5, 11, 6, 11);
 
-    public BlockMiniChest(Properties properties) {
-        super(properties);
+    public BlockMiniChest() {
+        super(properties -> properties.copy(Blocks.CHEST).sound(SoundType.STONE).strength(2).noOcclusion());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }
 

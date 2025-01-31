@@ -15,13 +15,14 @@ import net.minecraft.world.level.Level;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.network.NetworkHooks;
 import org.louis.randomthings.Randomthings;
+import org.louis.randomthings.base.BaseItem;
 import org.louis.randomthings.core.menu.ItemBagOfHoldingMenu;
 
 import java.util.List;
 
-public class ItemBagOfHolding extends Item {
+public class ItemBagOfHolding extends BaseItem {
     public ItemBagOfHolding() {
-        super(new Item.Properties().stacksTo(1)); // Chỉ có thể có 1 item
+        super(properties -> properties.stacksTo(1)); // Chỉ có thể có 1 item
     }
 
     @Override
@@ -57,7 +58,7 @@ public class ItemBagOfHolding extends Item {
         // Kiểm tra nếu Bag of Holding có chứa dữ liệu inventory
         if (stack.hasTag() && stack.getTag().contains("Inventory")) {
             ItemStackHandler inventoryHandler = new ItemStackHandler(54);
-            inventoryHandler.deserializeNBT(stack.getTag().getCompound("Inventory"));;
+            inventoryHandler.deserializeNBT(stack.getTag().getCompound("Inventory"));
 
             // Số lượng tối đa hiển thị trong tooltip
             final int MAX_DISPLAY = 10;
@@ -78,7 +79,7 @@ public class ItemBagOfHolding extends Item {
             }
 
         } else {
-            tooltip.add(Component.literal(""));
+            tooltip.clear();
         }
     }
 

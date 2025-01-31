@@ -13,10 +13,7 @@ import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.louis.randomthings.core.screen.BlockMiniChestScreen;
 import org.louis.randomthings.core.screen.ItemBagOfHoldingScreen;
-import org.louis.randomthings.registry.ModBlocks;
-import org.louis.randomthings.registry.ModBlockEntities;
-import org.louis.randomthings.registry.ModItems;
-import org.louis.randomthings.registry.ModMenuTypes;
+import org.louis.randomthings.registry.*;
 
 @Mod(Randomthings.MODID)
 public class Randomthings {
@@ -29,12 +26,13 @@ public class Randomthings {
 
         ModBlocks.register(modEventBus);
         ModBlockEntities.register(modEventBus);
-        ModMenuTypes.register(modEventBus);
+        ModMenu.register(modEventBus);
         ModItems.register(modEventBus);
-        RDTab.register(modEventBus);
+        ModTab.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
         modEventBus.addListener(this::addCreative);
+
     }
 
     private void commonSetup(final FMLCommonSetupEvent event) {
@@ -57,8 +55,8 @@ public class Randomthings {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            MenuScreens.register(ModMenuTypes.MINI_CHEST_MENU.get(), BlockMiniChestScreen::new);
-            MenuScreens.register(ModMenuTypes.BAG_OF_HOLDING_MENU.get(), ItemBagOfHoldingScreen::new);
+            MenuScreens.register(ModMenu.MINI_CHEST_MENU.get(), BlockMiniChestScreen::new);
+            MenuScreens.register(ModMenu.BAG_OF_HOLDING_MENU.get(), ItemBagOfHoldingScreen::new);
         }
     }
 }

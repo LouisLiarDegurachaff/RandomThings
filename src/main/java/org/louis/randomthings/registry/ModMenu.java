@@ -10,7 +10,7 @@ import org.louis.randomthings.Randomthings;
 import org.louis.randomthings.core.menu.BlockMiniChestMenu;
 import org.louis.randomthings.core.menu.ItemBagOfHoldingMenu;
 
-public class ModMenuTypes {
+public class ModMenu {
     public static final DeferredRegister<MenuType<?>> MENU_TYPES =
             DeferredRegister.create(ForgeRegistries.MENU_TYPES, Randomthings.MODID);
 
