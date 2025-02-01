@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    " / ",
+    " i "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:diamond"
+    },
+    "/": {
+      "item": "randomthings:activated_division_sigil"
+    },
+    "i": {
+      "item": "minecraft:iron_ingot"
+    }
+  },
+  "result": {
+    "item": "randomthings:unstable_ingot",
+    "count": 1,
+    "nbt": {
+      "isStable": 1
+    }
+  }
+}

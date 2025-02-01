@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#g#",
+    "gNg",
+    "igi"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:glass"
+    },
+    "g": {
+      "item": "minecraft:gold_ingot"
+    },
+    "N": {
+      "item": "minecraft:nether_star"
+    },
+    "i": {
+      "item": "randomthings:unstable_ingot"
+    }
+  },
+  "result": {
+    "item": "randomthings:angel_ring",
+    "count": 1
+  }
+}

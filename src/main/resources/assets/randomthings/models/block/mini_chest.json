@@ -1,0 +1,33 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "block/cube",
+	"textures": {
+		"north": "randomthings:block/mini_chest_front",
+		"south": "randomthings:block/mini_chest_side",
+		"up": "randomthings:block/mini_chest_top",
+		"down": "randomthings:block/mini_chest_bottom"
+	},
+	"elements": [
+		{
+			"from": [5, 0, 5],
+			"to": [11, 6, 11],
+			"rotation": {"angle": 0, "axis": "y", "origin": [8, 6, 8]},
+			"faces": {
+				"north": {"uv": [5, 10, 11, 16], "texture": "#north"},
+				"east": {"uv": [5, 10, 11, 16], "texture": "#south"},
+				"south": {"uv": [5, 10, 11, 16], "texture": "#south"},
+				"west": {"uv": [5, 10, 11, 16], "texture": "#south"},
+				"up": {"uv": [5, 5, 11, 11], "texture": "#up"},
+				"down": {"uv": [5, 5, 11, 11], "texture": "#down"}
+			}
+		}
+	],
+	"groups": [
+		{
+			"name": "VoxelShapes",
+			"origin": [8, 8, 8],
+			"color": 0,
+			"children": [0]
+		}
+	]
+}
