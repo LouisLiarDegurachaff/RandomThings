@@ -9,6 +9,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
@@ -40,7 +41,7 @@ public class ItemUnstableIngot extends BaseItem {
 
             // Nếu isStable là true, tên sẽ là "Stable Ingot" với màu trắng
             if (isStable) {
-                return Component.literal("Stable Ingot")
+                return Component.literal("Stable-'Unstable Ingot'")
                         .setStyle(Style.EMPTY.withColor(16777215)); // Màu trắng
             }
         }
@@ -53,26 +54,31 @@ public class ItemUnstableIngot extends BaseItem {
     @SubscribeEvent
     public void onItemCrafted(PlayerEvent.ItemCraftedEvent event) {
         ItemStack craftedItem = event.getCrafting();
-
-        // Kiểm tra nếu item là Unstable Ingot và chưa có NBT "ExplosionTime"
-        if (craftedItem.getItem() instanceof ItemUnstableIngot && !craftedItem.hasTag()) {
             // Thêm NBT "ExplosionTime" và bắt đầu bộ đếm
-            craftedItem.getOrCreateTag().putInt("ExplosionTime", EXPLOSION_TIME);  // Đặt thời gian nổ
-            craftedItem.getOrCreateTag().putBoolean("isStable", false);  // Đánh dấu là không ổn định
-        }
+            if (!craftedItem.hasTag()) {
+                craftedItem.getOrCreateTag().putInt("ExplosionTime", EXPLOSION_TIME);  // Đặt thời gian nổ
+                craftedItem.getOrCreateTag().putBoolean("isStable", false);  // Đánh dấu là không ổn định
+            }
+
     }
+
+
 
     // Khi item được nhặt lên
     @SubscribeEvent
     public void onItemPickedUp(EntityItemPickupEvent event) {
+        // Kiểm tra nếu item là Unstable Ingot
         ItemEntity itemEntity = event.getItem();
         ItemStack pickedUpItem = itemEntity.getItem();
 
-        // Kiểm tra nếu item là Unstable Ingot và chưa có NBT "ExplosionTime"
-        if (pickedUpItem.getItem() instanceof ItemUnstableIngot && !pickedUpItem.hasTag()) {
-            // Thêm NBT "ExplosionTime" và bắt đầu bộ đếm
-            pickedUpItem.getOrCreateTag().putInt("ExplosionTime", EXPLOSION_TIME);  // Đặt thời gian nổ
-            pickedUpItem.getOrCreateTag().putBoolean("isStable", false);  // Đánh dấu là không ổn định
+        if (pickedUpItem.getItem() instanceof ItemUnstableIngot) {
+            Player player = event.getEntity();
+
+            // Kiểm tra nếu người chơi không ở gần Crafting Table
+            if (player.level().getBlockState(player.blockPosition()).getBlock() != Blocks.CRAFTING_TABLE) {
+                // Nếu không phải Crafting Table, hủy sự kiện và không cho người chơi lấy item
+                event.setCanceled(true);
+            }
         }
     }
 
@@ -155,4 +161,18 @@ public class ItemUnstableIngot extends BaseItem {
                     .setStyle(Style.EMPTY.withColor(color))); // Đổi màu khi gần hết thời gian
         }
     }
+
+    @SubscribeEvent
+    public void onItemUse(PlayerInteractEvent.RightClickBlock event) {
+        // Kiểm tra nếu item là Unstable Ingot và người chơi đang nhấp chuột phải vào một khối
+        ItemStack itemStack = event.getItemStack();
+        if (itemStack.getItem() instanceof ItemUnstableIngot) {
+            // Kiểm tra xem khối người chơi đang tương tác có phải là Crafting Table hay không
+            if (event.getLevel().getBlockState(event.getPos()).getBlock() != Blocks.CRAFTING_TABLE) {
+                // Nếu không phải Crafting Table, ngăn không cho sử dụng
+                event.setCanceled(true);
+            }
+        }
+    }
+
 }

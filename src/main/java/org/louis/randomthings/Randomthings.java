@@ -45,8 +45,7 @@ public class Randomthings {
 
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event) {
-            MenuScreens.register(ModMenu.MINI_CHEST_MENU.get(), BlockMiniChestScreen::new);
-            MenuScreens.register(ModMenu.BAG_OF_HOLDING_MENU.get(), ItemBagOfHoldingScreen::new);
+            ModScreens.register();
         }
     }
 }

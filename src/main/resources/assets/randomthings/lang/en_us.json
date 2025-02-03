@@ -8,10 +8,13 @@
   "item.randomthings.unstable_ingot": "Unstable Ingot",
   "item.randomthings.angel_ring": "Angel Ring",
 
+  "item.randomthings.destruction_pickaxe": "Destruction Pickaxe",
+
   "creativetab.random_things_tab": "Random Things",
 
   "tooltip.randomthings.unstable_ingot": "You have 10 second in INVENTORY before it explosion",
   "tooltip.randomthings.uses_left": "%s Uses Left",
   "tooltip.randomthings.one_use_left": "1 Use Left",
-  "tooltip.randomthings.unlimited_uses": "Unlimited Uses"
+  "tooltip.randomthings.unlimited_uses": "Unlimited Uses",
+  "tooltip.randomthings.auto_repair": "Item will auto repair"
 }

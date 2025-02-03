@@ -7,6 +7,8 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.louis.randomthings.Randomthings;
 import org.louis.randomthings.core.item.*;
+import org.louis.randomthings.core.item.tool.ItemDefoliageAxe;
+import org.louis.randomthings.core.item.tool.ItemDestructionPickaxe;
 
 public class ModItems {
     public static final DeferredRegister<Item> ITEMS =
@@ -20,6 +22,11 @@ public class ModItems {
     public static final RegistryObject<Item> ANGEL_RING = ITEMS.register("angel_ring", ItemAngelRing::new);
 
     public static final RegistryObject<Item> ITEM_ANGEL_BLOCK = ITEMS.register("angel_block", ItemAngelBlock::new);
+
+    public static final RegistryObject<Item> DESTRUCTION_PICKAXE = ITEMS.register("destruction_pickaxe",
+            () -> new ItemDestructionPickaxe(ModTiers.UNSTABLE_TIER));
+    public static final RegistryObject<Item> DEFOLIAGE_AXE = ITEMS.register("defoliage_axe",
+            () -> new ItemDefoliageAxe(ModTiers.UNSTABLE_TIER));
 
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
