@@ -1,0 +1,66 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"textures": {
+		"2": "randomthings:block/drum_center_colored",
+		"center": "randomthings:block/drum_center",
+		"particle": "randomthings:block/drum_top",
+		"top": "randomthings:block/drum_top"
+	},
+	"elements": [
+		{
+			"from": [2.384, 5, 2.384],
+			"to": [13.616, 11, 13.616],
+			"faces": {
+				"north": {"uv": [0, 5, 16, 11], "texture": "#center", "cullface": "north"},
+				"east": {"uv": [0, 5, 16, 11], "texture": "#center", "cullface": "east"},
+				"south": {"uv": [0, 5, 16, 11], "texture": "#center", "cullface": "south"},
+				"west": {"uv": [0, 5, 16, 11], "texture": "#center", "cullface": "west"}
+			}
+		},
+		{
+			"from": [2.416, 0, 2.416],
+			"to": [13.584, 16, 13.584],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#2"}
+			}
+		},
+		{
+			"from": [2.384, 0, 2.384],
+			"to": [13.616, 1, 13.616],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#center"},
+				"east": {"uv": [0, 0, 16, 1], "texture": "#center"},
+				"south": {"uv": [0, 0, 16, 1], "texture": "#center"},
+				"west": {"uv": [0, 0, 16, 1], "texture": "#center"},
+				"up": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#top"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#top"}
+			}
+		},
+		{
+			"from": [2.384, 15, 2.384],
+			"to": [13.616, 16, 13.616],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 1], "texture": "#center"},
+				"east": {"uv": [0, 0, 16, 1], "texture": "#center"},
+				"south": {"uv": [0, 0, 16, 1], "texture": "#center"},
+				"west": {"uv": [0, 0, 16, 1], "texture": "#center"},
+				"up": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#top"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#top"}
+			}
+		}
+	],
+	"groups": [
+		0,
+		1,
+		{
+			"name": "Top Bottom",
+			"origin": [0, 0, 0],
+			"color": 0,
+			"children": [2, 3]
+		}
+	]
+}

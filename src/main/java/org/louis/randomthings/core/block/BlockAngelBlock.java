@@ -16,7 +16,7 @@ public class BlockAngelBlock extends BaseBlock {
         super(properties -> Properties
                 .copy(Blocks.STONE)
                 .sound(SoundType.STONE)
-                .strength(2.0f, 6.0f) // Thêm giá trị explosionResistance (6.0f giống Stone)
+                .strength(2.0f, 1200.0f) // Thêm giá trị explosionResistance (6.0f giống Stone)
         );
     }
 

@@ -23,7 +23,8 @@ public abstract class BaseEntityWaterloggedBlock extends BaseEntityBlock impleme
     public BaseEntityWaterloggedBlock(Function<Properties, Properties> properties) {
         super(properties);
         this.registerDefaultState(this.stateDefinition.any()
-                .setValue(WATERLOGGED, Boolean.FALSE));
+                .setValue(FACING, Direction.NORTH) // Đặt FACING mặc định là NORTH
+                .setValue(WATERLOGGED, Boolean.FALSE)); // WATERLOGGED mặc định là FALSE
     }
 
     @Override
@@ -31,8 +32,10 @@ public abstract class BaseEntityWaterloggedBlock extends BaseEntityBlock impleme
         Direction direction = context.getHorizontalDirection().getOpposite();
         FluidState fluidState = context.getLevel().getFluidState(context.getClickedPos());
         return this.defaultBlockState()
-                .setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER);
+                .setValue(FACING, direction) // Đặt giá trị FACING
+                .setValue(WATERLOGGED, fluidState.getType() == Fluids.WATER); // Đặt WATERLOGGED
     }
+
 
     @Override
     public FluidState getFluidState(BlockState state) {
@@ -41,8 +44,8 @@ public abstract class BaseEntityWaterloggedBlock extends BaseEntityBlock impleme
 
     @Override
     protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-        super.createBlockStateDefinition(builder);
-        builder.add(WATERLOGGED); // Thêm thuộc tính WATERLOGGED vào BlockState
+        super.createBlockStateDefinition(builder); // Kế thừa thuộc tính từ lớp cha, bao gồm FACING
+        builder.add(WATERLOGGED); // Chỉ thêm WATERLOGGED, không thêm lại FACING
     }
 
     @Override

@@ -62,8 +62,6 @@ public class ItemUnstableIngot extends BaseItem {
 
     }
 
-
-
     // Khi item được nhặt lên
     @SubscribeEvent
     public void onItemPickedUp(EntityItemPickupEvent event) {
@@ -161,18 +159,4 @@ public class ItemUnstableIngot extends BaseItem {
                     .setStyle(Style.EMPTY.withColor(color))); // Đổi màu khi gần hết thời gian
         }
     }
-
-    @SubscribeEvent
-    public void onItemUse(PlayerInteractEvent.RightClickBlock event) {
-        // Kiểm tra nếu item là Unstable Ingot và người chơi đang nhấp chuột phải vào một khối
-        ItemStack itemStack = event.getItemStack();
-        if (itemStack.getItem() instanceof ItemUnstableIngot) {
-            // Kiểm tra xem khối người chơi đang tương tác có phải là Crafting Table hay không
-            if (event.getLevel().getBlockState(event.getPos()).getBlock() != Blocks.CRAFTING_TABLE) {
-                // Nếu không phải Crafting Table, ngăn không cho sử dụng
-                event.setCanceled(true);
-            }
-        }
-    }
-
 }

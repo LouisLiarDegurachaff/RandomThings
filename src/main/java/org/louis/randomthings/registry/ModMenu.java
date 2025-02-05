@@ -9,6 +9,7 @@ import net.minecraftforge.registries.RegistryObject;
 import org.louis.randomthings.Randomthings;
 import org.louis.randomthings.core.menu.BlockMiniChestMenu;
 import org.louis.randomthings.core.menu.ItemBagOfHoldingMenu;
+import org.louis.randomthings.core.menu.generator.BlockFurnaceGeneratorMenu;
 
 public class ModMenu {
     public static final DeferredRegister<MenuType<?>> MENU_TYPES =
@@ -19,6 +20,9 @@ public class ModMenu {
 
     public static final RegistryObject<MenuType<ItemBagOfHoldingMenu>> BAG_OF_HOLDING_MENU = MENU_TYPES.register("bag_of_holding",
             () -> IForgeMenuType.create(ItemBagOfHoldingMenu::new));
+
+    public static final RegistryObject<MenuType<BlockFurnaceGeneratorMenu>> FURNACE_GENERATOR = MENU_TYPES.register("furnace_generator",
+            () -> IForgeMenuType.create(BlockFurnaceGeneratorMenu::new));
 
     public static void register(IEventBus eventBus) {
         MENU_TYPES.register(eventBus);

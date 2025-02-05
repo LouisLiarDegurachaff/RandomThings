@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "WGL",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "tag": "minecraft:cobblestone"
+    },
+    "W": {
+      "tag": "minecraft:water"
+    },
+    "G": {
+      "tag": "minecraft:glass"
+    },
+    "L": {
+      "tag": "minecraft:lava"
+    }
+  },
+  "result": {
+    "item": "randomthings:cobblegen_block",
+    "count": 1
+  }
+}

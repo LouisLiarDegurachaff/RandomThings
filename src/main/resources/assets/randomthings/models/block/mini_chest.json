@@ -5,7 +5,8 @@
 		"north": "randomthings:block/mini_chest_front",
 		"south": "randomthings:block/mini_chest_side",
 		"up": "randomthings:block/mini_chest_top",
-		"down": "randomthings:block/mini_chest_bottom"
+		"down": "randomthings:block/mini_chest_bottom",
+		"particle": "randomthings:block/mini_chest_side"
 	},
 	"elements": [
 		{

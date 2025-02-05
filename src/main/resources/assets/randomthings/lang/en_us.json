@@ -1,6 +1,10 @@
 {
   "block.randomthings.angel_block": "Angel Block",
   "block.randomthings.mini_chest": "Mini Chest",
+  "block.randomthings.drum": "Drum",
+  "block.randomthings.machine_block": "Machine Block",
+  "block.randomthings.furnace_generator": "Furnace Generator",
+  "block.randomthings.cobblegen_block": "Cobblestone Generator",
 
   "item.randomthings.bag_of_holding": "Bag Of Holding",
   "item.randomthings.division_sigil": "Division Sigil",
@@ -16,5 +20,8 @@
   "tooltip.randomthings.uses_left": "%s Uses Left",
   "tooltip.randomthings.one_use_left": "1 Use Left",
   "tooltip.randomthings.unlimited_uses": "Unlimited Uses",
-  "tooltip.randomthings.auto_repair": "Item will auto repair"
+  "tooltip.randomthings.auto_repair": "Item will auto repair",
+  "tooltip.randomthings.empty": "Empty",
+  "tooltip.randomthings.drum_fluid":  "Fluid: %s",
+  "tooltip.randomthings.drum_amount":  "Amount: %s/%s"
 }

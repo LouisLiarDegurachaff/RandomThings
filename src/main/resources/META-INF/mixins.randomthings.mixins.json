@@ -1,8 +1,0 @@
-{
-  "required": true,
-  "minVersion": "0.8",
-  "package": "org.louis.randomthings.mixin",
-  "refmap": "mixins.randomthings.refmap.json",
-  "mixins": [
-  ]
-}

@@ -60,11 +60,6 @@ public class BlockMiniChest extends BaseEntityWaterloggedBlock{
             if (blockEntity instanceof BlockMiniChestEntity) {
                 ((BlockMiniChestEntity) blockEntity).drops();
             }
-            // Custom particle effects (using block texture)
-            if (!pLevel.isClientSide()) {
-                BlockParticleOption particleData = new BlockParticleOption(ParticleTypes.BLOCK, pState);
-                pLevel.addParticle(particleData, pPos.getX() + 0.5, pPos.getY() + 0.5, pPos.getZ() + 0.5, 0, 0, 0);
-            }
         }
         super.onRemove(pState, pLevel, pPos, pNewState, pIsMoving);
     }
