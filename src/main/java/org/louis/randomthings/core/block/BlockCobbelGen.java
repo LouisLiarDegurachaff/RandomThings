@@ -10,7 +10,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.louis.randomthings.base.BaseEntityBlock;
-import org.louis.randomthings.core.block.entity.BlockCobbleGenEntity;
+import org.louis.randomthings.core.entity.BlockCobbleGenEntity;
 import org.louis.randomthings.registry.ModBlockEntities;
 import org.louis.randomthings.util.TickableBlockEntity;
 

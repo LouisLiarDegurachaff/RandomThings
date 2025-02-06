@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.items.SlotItemHandler;
 import org.jetbrains.annotations.NotNull;
-import org.louis.randomthings.core.block.entity.BlockMiniChestEntity;
+import org.louis.randomthings.core.entity.BlockMiniChestEntity;
 import org.louis.randomthings.registry.ModBlocks;
 import org.louis.randomthings.registry.ModMenu;
 

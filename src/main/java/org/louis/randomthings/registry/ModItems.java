@@ -22,6 +22,7 @@ public class ModItems {
     public static final RegistryObject<Item> ANGEL_RING = ITEMS.register("angel_ring", ItemAngelRing::new);
 
     public static final RegistryObject<Item> ITEM_ANGEL_BLOCK = ITEMS.register("angel_block", ItemAngelBlock::new);
+    public static final RegistryObject<Item> ITEM_DRUM = ITEMS.register("drum", ItemDrum::new);
 
     public static final RegistryObject<Item> DESTRUCTION_PICKAXE = ITEMS.register("destruction_pickaxe",
             () -> new ItemDestructionPickaxe(ModTiers.UNSTABLE_TIER));

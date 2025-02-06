@@ -28,6 +28,7 @@ public class Randomthings {
         ModBlockEntities.register(modEventBus);
         ModMenu.register(modEventBus);
         ModItems.register(modEventBus);
+        ModEnchantments.register(modEventBus);
         ModTab.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);

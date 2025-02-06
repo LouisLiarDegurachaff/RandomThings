@@ -2,6 +2,7 @@ package org.louis.randomthings.util;
 
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.item.enchantment.Enchantment;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -9,6 +10,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import org.louis.randomthings.Randomthings;
 import org.louis.randomthings.registry.ModBlocks;
+import org.louis.randomthings.registry.ModEnchantments;
 import org.louis.randomthings.registry.ModRenderers;
 import org.louis.randomthings.registry.ModScreens;
 

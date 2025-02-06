@@ -1,8 +1,6 @@
 package org.louis.randomthings.core.block;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -18,7 +16,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.Nullable;
 import org.louis.randomthings.base.BaseEntityWaterloggedBlock;
-import org.louis.randomthings.core.block.entity.BlockMiniChestEntity;
+import org.louis.randomthings.core.entity.BlockMiniChestEntity;
 import org.louis.randomthings.registry.ModBlockEntities;
 
 @SuppressWarnings("deprecation")

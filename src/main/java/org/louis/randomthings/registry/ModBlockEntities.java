@@ -6,9 +6,9 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 import org.louis.randomthings.Randomthings;
-import org.louis.randomthings.core.block.entity.BlockCobbleGenEntity;
-import org.louis.randomthings.core.block.entity.BlockDrumEntity;
-import org.louis.randomthings.core.block.entity.BlockMiniChestEntity;
+import org.louis.randomthings.core.entity.BlockCobbleGenEntity;
+import org.louis.randomthings.core.entity.BlockDrumEntity;
+import org.louis.randomthings.core.entity.BlockMiniChestEntity;
 import org.louis.randomthings.core.block.generator.entity.BlockFurnaceGeneratorEntity;
 
 public class ModBlockEntities {

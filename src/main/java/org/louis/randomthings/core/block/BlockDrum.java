@@ -1,20 +1,9 @@
 package org.louis.randomthings.core.block;
 
-import net.minecraft.client.color.block.BlockColors;
-import net.minecraft.client.color.item.ItemColors;
-import net.minecraft.client.particle.ParticleEngine;
-import net.minecraft.client.renderer.ItemBlockRenderTypes;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.resources.language.I18n;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Registry;
-import net.minecraft.core.particles.BlockParticleOption;
-import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
@@ -37,8 +26,7 @@ import net.minecraftforge.fluids.FluidUtil;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.louis.randomthings.base.BaseEntityBlock;
-import org.louis.randomthings.core.block.entity.BlockDrumEntity;
-import org.louis.randomthings.core.block.entity.BlockMiniChestEntity;
+import org.louis.randomthings.core.entity.BlockDrumEntity;
 import org.louis.randomthings.registry.ModBlockEntities;
 
 import java.util.List;
@@ -96,10 +84,10 @@ public class BlockDrum extends BaseEntityBlock {
             FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(fluidTag);
             fluidName = fluidStack.getDisplayName().getString();
             amount = fluidTag.getInt("Amount");
-
-            tooltip.add(Component.translatable("tooltip.randomthings.drum_fluid", fluidName));
-            tooltip.add(Component.translatable("tooltip.randomthings.drum_amount", amount, BlockDrum.MAX_CAPACITY));
         }
+
+        tooltip.add(Component.translatable("tooltip.randomthings.drum_fluid", fluidName));
+        tooltip.add(Component.translatable("tooltip.randomthings.drum_amount", amount, BlockDrum.MAX_CAPACITY));
 
         super.appendHoverText(stack, level, tooltip, flag);
     }

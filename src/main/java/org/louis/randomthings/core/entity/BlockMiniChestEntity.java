@@ -1,4 +1,4 @@
-package org.louis.randomthings.core.block.entity;
+package org.louis.randomthings.core.entity;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
